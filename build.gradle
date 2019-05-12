@@ -1,0 +1,23 @@
+plugins {
+    id "scala"
+    id "application"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "org.scala-lang:scala-library:2.12.8"
+    implementation "io.gatling.highcharts:gatling-charts-highcharts:3.1.1"
+}
+
+application {
+    mainClassName = "io.gatling.app.Gatling"
+    applicationDefaultJvmArgs = ["-server", "-Xmx1G", "-XX:+HeapDumpOnOutOfMemoryError",
+                                 "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=30", "-XX:G1HeapRegionSize=16m",
+                                 "-XX:InitiatingHeapOccupancyPercent=75", "-XX:+ParallelRefProcEnabled",
+                                 "-XX:+PerfDisableSharedMem", "-XX:+AggressiveOpts", "-XX:+OptimizeStringConcat",
+                                 "-Djava.net.preferIPv4Stack=true", "-Djava.net.preferIPv6Addresses=false"
+    ]
+}
